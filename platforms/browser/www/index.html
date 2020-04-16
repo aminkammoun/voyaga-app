@@ -1,0 +1,123 @@
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link href="./css/vuetify.min.css" rel="stylesheet" />
+    <link href="./css/test.css" rel="stylesheet" />
+
+    <script src="./js/basic/vuefire.js"></script>
+    <script src="./js/basic/axios.min.js"></script>
+    <script src="./js/basic/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <v-app>
+        <v-app-bar app dark color="#038AFF">
+          <div id="menu-bar">
+            <div id="menu" onclick="onClickMenu()">
+              <div id="bar1" class="bar"></div>
+              <div id="bar2" class="bar"></div>
+              <div id="bar3" class="bar"></div>
+            </div>
+            <ul class="nav" id="nav">
+              <li><a href="index.html">map</a></li>
+            </ul>
+          </div>
+          <div class="menu-bg" id="menu-bg"></div>
+        </v-app-bar>
+        <v-content>
+          <v-container grid-list-xs>
+            <v-row>
+              <v-col md="3" v-for="voyage in voyages" :key="voyage.id">
+                <v-hover>
+                  <template v-slot:default="{ hover }">
+                    <v-card class="mx-auto" max-width="344">
+                      <v-img
+                        :src="'http://localhost:3000/'+voyage.productImage[0].filename"
+                      ></v-img>
+
+                      <v-card-text>
+                        <h2 class="title primary--text">
+                          {{voyage.depart}}-{{voyage.arrive}}
+                        </h2>
+                        Travel to the best outdoor experience on planet Earth. A
+                        vacation you will never forget!
+                      </v-card-text>
+
+                      <v-card-title>
+                        <v-rating
+                          :value="4"
+                          dense
+                          color="orange"
+                          background-color="orange"
+                          hover
+                          class="mr-2"
+                        ></v-rating>
+                        <span class="primary--text subtitle-2">64 Reviews</span>
+                      </v-card-title>
+
+                      <v-fade-transition>
+                        <v-overlay v-if="hover" absolute color="#036358">
+                          <v-btn @click="storeId(voyage._id)">
+                            <a  href="views/afficheSingleVoyage.html">
+                              Explore
+                            </a></v-btn
+                          >
+                        </v-overlay>
+                      </v-fade-transition>
+                    </v-card>
+                  </template>
+                </v-hover>
+                <!-- <v-card class="mx-auto">
+                <v-img
+                  class="white--text align-end"
+                  height="200px"
+                  :src="'http://localhost:3000/'+voyage.productImage"
+                >
+                  <v-card-title>{{voyage.arrive}}</v-card-title>
+                </v-img>
+                <v-card-subtitle class="pb-0">Number 10</v-card-subtitle>
+
+                <v-card-text class="text--primary">
+                  <div>Whitehaven Beach</div>
+
+                  <div>Whitsunday Island, Whitsunday Islands</div>
+                </v-card-text>
+
+                <v-card-actions>
+                  <v-btn color="orange" text>
+                    Share
+                  </v-btn>
+
+                  <a :href="'http://localhost:3000/'+voyage._id"
+                    ><v-btn color="orange" text>
+                      Explore
+                    </v-btn></a
+                  >
+                </v-card-actions>
+              </v-card> -->
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-content>
+      </v-app>
+    </div>
+  </body>
+  <script src="./js/Stock.js"></script>
+  <script type="text/javascript">
+    function onClickMenu() {
+      document.getElementById("menu").classList.toggle("change");
+      document.getElementById("nav").classList.toggle("change");
+
+      document.getElementById("menu-bg").classList.toggle("change-bg");
+    }
+  </script>
+</html>

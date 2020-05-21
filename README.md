@@ -1,1 +1,1 @@
-# voyaga-app
+# voyag-app
